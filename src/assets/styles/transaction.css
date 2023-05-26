@@ -1,0 +1,182 @@
+@import url('https://fonts.googleapis.com/css2?family=Quando&display=swap');
+.form{
+  border:2px solid white;
+  border-radius: 15px;
+  background-color: rgb(16, 237, 245);
+  width:50%;
+  margin-left: 25%;
+  font-family: 'Quando', serif;
+  height: 100%;
+}
+.label{
+  padding: 10px;
+  margin: 10px;
+
+}
+.input{
+margin-left: 20px;
+padding: 5px 10px; 
+}
+textarea{
+  resize: none;
+}
+.submitBtn{
+  border: 1px solid white;
+  border-radius: 6px;
+  padding: 4px 10px;
+  background-color: black;
+  color: aliceblue;
+  margin-left: 30%;
+  margin-bottom: 20px;
+
+}
+.showTrn{
+   border: 1px solid white;
+  border-radius: 6px;
+  padding: 4px 10px;
+  background-color: black;
+  color: aliceblue;
+  /* margin-left: 50%; */
+  margin-bottom: 20px;
+  margin-left: 15px;
+
+}
+
+.cross{
+  font-weight: 900;
+  font-size: 15px;
+  color: red;
+  border: 1px solid;
+  border-radius: 600px;
+}
+
+/*  transaction*/
+
+
+
+
+.details{
+  background-color: rgb(110, 172, 223);
+  /* margin-top: 30px; */
+}
+table{
+  border:2px solid rgb(49, 49, 49);
+  margin: 3%;
+  margin-top: 70px;
+  font-family: 'Quando', serif;
+  color: rgb(0, 0, 0);
+
+  
+}
+thead{
+border:1px solid rgb(49, 49, 49);
+background-color: rgb(252, 252, 252);
+}
+tbody{
+border:1px solid rgb(49, 49, 49);
+}
+tr,th{
+border:2px solid rgb(49, 49, 49);
+color: black;
+}
+td{
+  border: 1px solid rgb(49, 49, 49) ;
+padding: 5px 5px;
+color: black;
+}
+.createBtn{
+  margin-top: 10px;
+   border: 1px solid rgb(0, 0, 0);
+  border-radius: 6px;
+  padding: 4px 10px;
+  /* background-color: rgb(51, 42, 42); */
+  color: rgb(255, 255, 255);
+  margin-left: 45%;
+  margin-bottom: 20px;
+
+}
+.groupby{
+  margin: 10px;
+}
+.pagination{
+text-align: center;
+}
+
+.page{
+  border:1px solid;
+  border-radius: 1px;
+  padding: 12px 15px;
+  color: black;
+  background-color: white;
+  margin-left: 10px;
+}
+
+.active{
+   border:1px solid;
+  border-radius: 1px;
+  padding: 14px 18px;
+  color:white;
+  background-color:black;
+  margin-left: 10px;
+}
+.logoutBtn{
+  margin-left: 20px;
+   border: 1px solid rgb(0, 0, 0);
+  border-radius: 6px;
+  padding: 5px 10px;
+color: black;
+}
+.search{
+  margin-left: 70%;
+  padding: 5px 12px;
+}
+.page-count{
+  width: 60px;
+  padding: 3px 6px;
+}
+.groupby{
+   width: 150px;
+  padding: 3px 6px;
+}
+/* view */
+
+.container {
+  border: 2px solid rgb(49, 49, 49);
+  border-radius: 20px;
+  margin: 3%;
+  margin-top: 70px;
+  padding: 20px 25px;
+  font-family: "Quando", serif;
+  color: rgb(0, 0, 0);
+}
+h2 {
+  text-align: center;
+}
+img {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.ViewBtn {
+  margin-top: 10px;
+  border: 1px solid rgb(0, 0, 0);
+  padding: 4px 10px;
+
+  background-color: rgb(51, 42, 42);
+
+  color: rgb(255, 255, 255);
+  margin-left: 45%;
+  margin-bottom: 20px;
+}
+
+label {
+  margin-top: 20px;
+  padding: 20px;
+}
+
+span {
+  margin-left: 15px;
+  color: brown;
+}
+
+
