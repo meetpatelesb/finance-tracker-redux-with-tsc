@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Cookies } from "react-cookie";
 import { RootState } from "../Redux/store";
+import { transactionErrorsType, transactionType } from "../interface/app_interface";
 
 const Transaction:React.FC = () => {
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ const Transaction:React.FC = () => {
    const reduxData = useSelector((data:RootState) => data.meet);
   const [transactionDatas, setTransactionDatas] = useState(reduxData);
 
-  const [groupby, setGroupby] = useState({});
+  const [groupby, setGroupby] = useState<{ [key: string]: transactionType[]}>({});
   // Cookies 
    const cookieM = new Cookies();
 
@@ -29,37 +30,43 @@ const Transaction:React.FC = () => {
     groupBy(groupVal);
   }, [transactionDatas]);
 
-  const groupBy = (e) => {
+  type groupData = { [key: string]: transactionType[] };
+
+  const groupBy = (e: React.ChangeEvent<HTMLSelectElement> | string) => {
     const gData = [...transactionDatas];
 
-    let groupData = {};
-    if (e.target) {
-      if (transactionDatas) {
-        let field = e.target.value;
-        setGroupVal(field);
+    let groupData:groupData = {};
 
-        if (field === "none") {
-          setGroupby(groupData);
-        } else {
-          gData.forEach((items:any) => {
-            const item = items[field]?.value;
-            groupData[item] = groupData[item] ?? [];
-            groupData[item].push(items);
-          });
-          setGroupby(groupData);
-          // setTransactionData(groupData)
-        }
-      }
-    } else {
-      if (e) {
-        gData.forEach((items) => {
-          const item = items[e]?.value;
-          groupData[item] = groupData[item] ?? [];
-          groupData[item].push(items);
-        });
-        setGroupby(groupData);
-      }
-    }
+     if (typeof e !== "string") {
+
+       if (e.target) {
+         if (transactionDatas) {
+           let field = e.target.value;
+           setGroupVal(field);
+   
+           if (field === "none") {
+             setGroupby(groupData);
+           } else {
+             gData.forEach((items: any) => {
+               const item = items[field]?.value;
+               groupData[item] = groupData[item] ?? [];
+               groupData[item].push(items);
+             });
+             setGroupby(groupData);
+             // setTransactionData(groupData)
+           }
+         }
+       } else {
+         if (e) {
+           gData.forEach((items) => {
+             const item = items[e]?.value;
+             groupData[item] = groupData[item] ?? [];
+             groupData[item].push(items);
+           });
+           setGroupby(groupData);
+         }
+       }
+     }
   };
 
   const logout = () => {

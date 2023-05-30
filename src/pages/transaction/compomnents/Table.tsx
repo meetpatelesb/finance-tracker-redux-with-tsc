@@ -13,7 +13,7 @@ import { deleteTransaction } from "../../../Redux/ducks/transactionSlice";
 // import "react-toastify/dist/ReactToastify.css";
 // import { useTransactionData } from "../";
 
-const Table = (props) => {
+const Table = (props:any) => {
   // redux data ....
   // const reduxData = useSelector((data) => data.meet);
 
@@ -27,7 +27,7 @@ const Table = (props) => {
     setCurrentPage(1);
   }, [props.records]);
 
-  const sorting = (key) => {
+  const sorting = (key:string) => {
     setCurrentPage(1);
     let direction = "ascending";
 
@@ -126,7 +126,7 @@ const Table = (props) => {
       setSortedData(props.records);
     } else {
       let searchData = props.records.filter(
-        (index) =>
+        (index:any) =>
           index.fromAccount.value.toLowerCase().includes(e.target.value) ||
           index.monthYear.value.toLowerCase().includes(e.target.value) ||
           index.notes.value.toLowerCase().includes(e.target.value) ||
@@ -157,7 +157,7 @@ const Table = (props) => {
   }
   let nThPage = pages.length;
 
-  const pageCount = (e) => {
+  const pageCount = (e:any) => {
     let count = e.target.value;
     setPostPerPage(count);
     setCurrentPage(1);

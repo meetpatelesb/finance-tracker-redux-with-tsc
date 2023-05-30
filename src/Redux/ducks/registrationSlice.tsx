@@ -1,6 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { userData } from "../../utils/constant";
-const initialState = userData;
+import { regDataType } from "../../interface/app_interface";
+interface regUserState{
+  regUser:regDataType[];
+}
+const initialState:regUserState = userData;
 
 export const registrationSlice = createSlice({
   name: "registration",

@@ -8,7 +8,7 @@ import { RootState } from "../Redux/store";
 const View = () => {
   const { id } = useParams();
   // params give id no. but we need index to fetch data
-  const index = Number(id - 1);
+  const index:number = Number(id) - 1;
   // redux data.....
   const reduxData = useSelector((data:RootState) => data.meet);
   const retrivedata = reduxData;

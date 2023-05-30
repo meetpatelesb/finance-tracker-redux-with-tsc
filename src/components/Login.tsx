@@ -9,7 +9,7 @@ import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { useCookies } from "react-cookie";
 import { RootState } from "../Redux/store";
-import { loginErrorsType } from "../interface/app_interface";
+import { loginErrorsType, transactionType } from "../interface/app_interface";
 
 
 const Login = () => {

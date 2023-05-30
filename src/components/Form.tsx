@@ -1,5 +1,5 @@
 import "../assets/styles/transaction.css";
-import * as React from 'react';
+import * as React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -16,7 +16,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { useSelector, useDispatch } from "react-redux";
-import  {RootState}  from "../Redux/store";
+import { RootState } from "../Redux/store";
 import { transactionErrorsType } from "../interface/app_interface";
 import {
   addTransaction,
@@ -24,33 +24,60 @@ import {
 } from "../Redux/ducks/transactionSlice";
 import { transactionType } from "../interface/app_interface";
 let info = {
-  monthYear: {},
-  transactionDate: {},
-  transactionType: {},
-  fromAccount: {},
-  toAccount: {},
-  transactionAmount: {},
-  receipt: {},
-  notes: {},
-  id:''
+  // monthYear: {},
+  // transactionDate: {},
+  // transactionType: {},
+  // fromAccount: {},
+  // toAccount: {},
+  // transactionAmount: {},
+  // receipt: {},
+  // notes: {},
+  // id: "",
+
+  monthYear: {
+    value: "",
+  },
+  transactionDate: {
+    value: "",
+  },
+  transactionType: {
+    value: "",
+  },
+  fromAccount: {
+    value: "",
+  },
+  toAccount: {
+    value: "",
+  },
+  transactionAmount: {
+    value: 0,
+  },
+  receipt: {
+    value: "",
+  },
+  notes: {
+    value: "",
+  },
+  id: "",
 };
 
 const TransactionForm = () => {
-  const { id1 } = useParams();
-  const id:string|undefined = id1;
+  const { id } = useParams();
+  // const id: string | undefined = id1;
   // const index = id - 1;
 
   // redux data.....
   const reduxData = useSelector((data: RootState) => data.meet);
   const dispatch = useDispatch();
 
-  const [transactionData, setTransactionData] = useState<transactionType[]>(reduxData);
+  const [transactionData, setTransactionData] =
+    useState<transactionType[]>(reduxData);
 
-  const updateData:any = [...transactionData];
+  const updateData: any = [...transactionData];
 
   const [submit, setSubmit] = useState(false);
   const navigate = useNavigate();
-  const [data, setData] = useState(info);
+  const [data, setData] = useState<transactionType>(info);
 
   // YUP VALIDATIONS...
 
@@ -83,7 +110,7 @@ const TransactionForm = () => {
     receipt: yup.mixed().test({
       name: "is-sku",
       skipAbsent: true,
-      test(value:yup.AnyObject | undefined, error) {
+      test(value: yup.AnyObject | undefined, error) {
         if (value === undefined || value === null || value.length === 0) {
           return error.createError({ message: "image is required!!!" });
         } else {
@@ -110,13 +137,13 @@ const TransactionForm = () => {
       },
     }),
   });
-  let dummy = updateData.filter((value:any) => {
+  let dummy = updateData.filter((value: transactionType) => {
     if (Number(value["id"])) {
       return Number(value["id"]) === Number(id);
     }
   });
 
-  let udata:any = {};
+  let udata: any = {};
 
   for (let a in dummy[0]) {
     if (dummy[0][a].value !== undefined) {
@@ -128,7 +155,7 @@ const TransactionForm = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<transactionErrorsType>({
+  } = useForm<transactionErrorsType | transactionType>({
     resolver: yupResolver(formSchema),
     defaultValues: udata,
   });
@@ -142,16 +169,15 @@ const TransactionForm = () => {
       }
     }
     //eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id]
-  );
+  }, [id]);
 
   const removeImage = () => {
-    setData((prev) => ({
+    setData((prev: any) => ({
       ...prev,
       receipt: "",
     }));
   };
-  const onSubmit = (e:any) => {
+  const onSubmit = (e: transactionType | transactionErrorsType) => {
     let {
       monthYear,
       transactionDate,
@@ -163,7 +189,7 @@ const TransactionForm = () => {
       notes,
     } = e;
 
-    setData((prev) => ({
+    setData((prev: any) => ({
       ...prev,
       monthYear: {
         value: monthYear,
@@ -194,8 +220,8 @@ const TransactionForm = () => {
     setData(data); // context data
     setSubmit(true);
   };
-  const handleChange = (e:any) => {
-    let receiptPhoto:any;
+  const handleChange = (e: any) => {
+    let receiptPhoto: any;
     let file = e.target.files[0];
     let freader = new FileReader();
     freader.readAsDataURL(file);
@@ -221,14 +247,14 @@ const TransactionForm = () => {
         } else {
           const prevDataIndex = Object.keys(retrivedata).length - 1;
           const prevId = retrivedata[prevDataIndex]["id"];
-          data['id'] = Number(Number(prevId) + 1).toString();
+          data["id"] = Number(Number(prevId) + 1).toString();
           dispatch(addTransaction({ data })); //dispatch
         }
       } else {
         data["id"] = Number(1).toString();
         // transactionData.push(data);   //secong approach
-        setTransactionData((prev) => [...prev, data]);
-        dispatch(addTransaction({ data }));  //dispatch
+        setTransactionData((prev: any) => [...prev, data]);
+        dispatch(addTransaction({ data })); //dispatch
       }
       navigate("/transaction");
     }
@@ -262,7 +288,10 @@ const TransactionForm = () => {
 
                 var limit = `${year}-${month}-${day}`;
 
-                document.getElementById("date").setAttribute("max", limit);
+                const date = document.getElementById("date");
+                if (date !== null) {
+                  date.setAttribute("max", limit);
+                }
               }}
             ></input>
             <span>{errors.transactionDate?.message}</span>
@@ -344,7 +373,7 @@ const TransactionForm = () => {
               {...register("transactionAmount")}
               // value={data?.transactionAmount?.value}
             ></input>
-            <span>{errors.transactionAmount?.message}</span>
+            <span>{errors.transactionAmount?.message?.toString()}</span>
           </div>
           <br></br>
           <label className="label">Receipt:</label>

@@ -1,29 +1,30 @@
 export interface transactionType {
+  [key: string]: any;
   monthYear: {
-    value: string
+    value: string;
   };
   transactionDate: {
-    value: string
+    value: string;
   };
   transactionType: {
-    value: string
+    value: string;
   };
   fromAccount: {
-    value: string
+    value: string;
   };
   toAccount: {
-    value: string
+    value: string;
   };
   transactionAmount: {
-    value: number
+    value: number;
   };
   receipt: {
-    value: string
+    value: string;
   };
   notes: {
-    value: string
+    value: string;
   };
-  id:number | string| undefined
+  id: number | string | undefined;
 }
 
 
